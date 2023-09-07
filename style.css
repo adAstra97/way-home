@@ -1,3 +1,50 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, canvas {
+  overflow: hidden;
+  image-rendering: optimizeSpeed;              
+  image-rendering: -moz-crisp-edges;           
+  image-rendering: -webkit-optimize-contrast;  
+  image-rendering: -o-crisp-edges;             
+  image-rendering: crisp-edges;                
+  -ms-interpolation-mode: nearest-neighbor;    
+  image-rendering: pixelated;                 
+}
+
+/* canvas {
+  width: auto !important;
+  height: auto !important;
+} */
+
+/* #page_wrapper {
+  margin: 0 auto;
+  min-height: 100vh;
+  max-width: 800px;
+  position: relative;
+}
+
+#game_container {
+  max-width: 800px;
+  max-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+} */
+
+/* #game-container>canvas {
+  border-radius: 5px;
+} */
