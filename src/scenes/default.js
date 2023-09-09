@@ -97,6 +97,7 @@ export default class DefaultLevel extends Phaser.Scene {
          this.time.addEvent({
             delay: 1200,
             callback: () => {
+               this.registry.set('score', 0)
                this.scene.stop(this.levelKey);
                this.scene.start('GameOverScene');
             },
