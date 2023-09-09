@@ -4,29 +4,38 @@ export default class Player {
    constructor(scene, x, y) {
       this.scene = scene;
 
-      this.createAnimations(scene);
+      if (!scene.anims.exists('idle')) {
+         this.createAnimations(scene);
+      }
 
-      this.cat = scene.physics.add.sprite(x, y, 'player')
+      this.cat = scene.physics.add.sprite(x, y + 95, 'player')
          .setBounce(0)
          .setCollideWorldBounds(true)
          .setScale(1.7)
          .setDepth(1);
 
-         this.cat.body.setSize(20, 20, 0, 0).setOffset(5, 12);
-         this.cursors = scene.input.keyboard.createCursorKeys();
+      this.cat.body.setSize(15, 15, 0, 0).setOffset(9, 17);
+      this.cursors = scene.input.keyboard.createCursorKeys();
 
    }
 
    update(time, delta) {
+      if (this.scene.gameOver) {
+         return;
+      }
+
       const { cursors, cat } = this;
 
       if (cursors.left.isDown) {
-         cat.setVelocityX(-200);
+         cat.setVelocityX(-speed);
+         this.direction = 'left';
+
          if (cat.body.onFloor()) {
             cat.play('walk', true);
          }
       } else if (cursors.right.isDown) {
-         cat.setVelocityX(200);
+         cat.setVelocityX(speed);
+         this.direction = 'right';
 
          if (cat.body.onFloor()) {
             cat.play('walk', true);
@@ -43,9 +52,9 @@ export default class Player {
 
       // Player can jump while walking any direction by pressing the space bar
       // or the 'UP' arrow
-      if ((cursors.space.isDown || cursors.up.isDown) && cat.body.onFloor()) {
+      if ((cursors.space.isDown) && cat.body.onFloor()) {
          // this.scene.jumpSound.play();
-         cat.setVelocityY(-220);
+         cat.setVelocityY(-speed);
          cat.play('jump', true);
       }
 
@@ -59,7 +68,7 @@ export default class Player {
    }
 
    destroy() {
-      this.player.destroy();
+      this.cat.destroy();
    }
 
    createAnimations(scene) {
@@ -88,6 +97,19 @@ export default class Player {
          frameRate: 10,
          repeat: -1,
          yoyo: true,
+      });
+      scene.anims.create({
+         key: 'death-player',
+         frames: scene.anims.generateFrameNumbers('player', { frames: [303, 302, 301, 300, 299, 298, 297, 295 ] }),
+         frameRate: 8,
+         repeat: 0,
+         yoyo: false,
+      });
+      scene.anims.create({
+         key: 'game-over',
+         frames: scene.anims.generateFrameNumbers('player', { frames: [344, 345, 346, 347, 352, 353, 354, 355, 360, 361, 362, 363, 355, 354, 353, 352, 347, 346, 345, 352] }),
+         frameRate: 8,
+         repeat: 0,
       });
    }
 }

@@ -1,5 +1,7 @@
 import DefaultLevel from "./default";
 import ParallaxHelper from "../parallax-helper";
+import Enemy from '../enemy';
+
 
 export default class Level1 extends DefaultLevel {
    constructor() {
@@ -11,6 +13,7 @@ export default class Level1 extends DefaultLevel {
    }
 
    create() {
+
       const {width, height} = this.scale;
       const totalWidth = width * 2.5;
 
@@ -21,24 +24,22 @@ export default class Level1 extends DefaultLevel {
 
       ParallaxHelper.createParallaxBg(this, totalWidth, 150, 'cloud', 0.1);
       ParallaxHelper.createParallaxBg(this, totalWidth, 280, 'mountain', 0.4);
-      ParallaxHelper.createParallaxBg(this, totalWidth, 330, 'pine1', 0.8);
-      ParallaxHelper.createParallaxBg(this, totalWidth, 400, 'pine2', 1);
+      ParallaxHelper.createParallaxBg(this, totalWidth, 330, 'pine1', 0.8, '0xBFFFA5');
+      ParallaxHelper.createParallaxBg(this, totalWidth, 400, 'pine2', 1, '0xBFFFA5');
 
       this.cameras.main.setBounds(0,0, width * 2.5, height);
 
       super.create();
 
+      //add enemies
+      this.enemy = new Enemy(this, this.mapFromTilemap, this.scoreScene);
+      this.bees = this.enemy.createBees();
+      this.physics.add.collider(this.platforms, this.bees);
+      this.physics.add.overlap(this.player.cat, this.bees, this.enemy.checkAgainstEnemies, null, this);
    }
 
    update() {
       super.update();
 
-      // const cam = this.cameras.main;
-      // const speed = 3;
-      // if (this.cursors.left.isDown) {
-      //    cam.scrollX -= speed;
-      // } else if (this.cursors.right.isDown) {
-      //    cam.scrollX += speed;
-      // }
    }
 }

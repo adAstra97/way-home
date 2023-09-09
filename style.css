@@ -1,5 +1,20 @@
+@font-face {
+  font-family: 'Press Start';
+  src: url('../fonts/PressStart.woff2') format('woff2'),
+       url('../fonts/PressStart.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Public Pixel';
+  src: url('../fonts/PublicPixel.woff2') format('woff2'),
+       url('../fonts/PublicPixel.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Public Pixel';
 }
 
 * {

@@ -1,11 +1,12 @@
 import './style.css';
 import Phaser from 'phaser';
-
 import Level1 from './src/scenes/level1';
+import ScoreScene from './src/scenes/score-scene';
+import GameOverScene from './src/scenes/game-over';
 
 let config = {
    type: Phaser.AUTO,
-   backgroundColor: '#4488aa',
+   backgroundColor: '0x000000',
    fps: {target: 40},
    render: {
       pixelArt: true
@@ -20,14 +21,14 @@ let config = {
       // width: 350,
       // height: 208,
       width: 800,
-      height: 516,
+      height: 503,
    },
-   scene: [Level1],
+   scene: [Level1, ScoreScene, GameOverScene],
    physics: {
       default: 'arcade',
       arcade: {
          gravity: { y: 300 },
-         debug: false,
+         debug: true,
          fixedStep: false,
          enableBody: true,
       },
