@@ -55,7 +55,7 @@ export default class DefaultLevel extends Phaser.Scene {
       this.cameras.main.zoom = 1.5
 
       //add decoration layer
-      this.mapFromTilemap.createLayer('Decoration', tileset, 0, 120);
+      this.decoration = this.mapFromTilemap.createLayer('Decoration', tileset, 0, 120);
 
       //add treasure layer
       this.treasure = new Treasure(this, this.mapFromTilemap, this.scoreScene);
@@ -97,7 +97,7 @@ export default class DefaultLevel extends Phaser.Scene {
          this.time.addEvent({
             delay: 1200,
             callback: () => {
-               this.registry.set('score', 0)
+               this.registry.set('score', 0);
                this.scene.stop(this.levelKey);
                this.scene.start('GameOverScene');
             },

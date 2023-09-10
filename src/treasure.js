@@ -23,10 +23,30 @@ export default class Treasure {
       return this.coins;
    }
 
+   createDiamonds() {
+      this.diamonds = this.scene.physics.add.staticGroup();
+      this.treasureObjects.forEach(object => {
+         if (object.name === 'diamond') {
+            let diamondEl = this.diamonds.create(object.x + 10, object.y + 110, 'diamond').setScale(1.5).setSize(16, 16).setOffset(0, 0);
+
+            diamondEl.anims.play('shine-diamond');
+         }
+      });
+
+      return this.diamonds;
+   }
+
    createAnimations(scene) {
       scene.anims.create({
          key: 'shine-coin',
          frames: scene.anims.generateFrameNumbers('coin', { start: 0, end: 6 }),
+         frameRate: 10,
+         repeat: -1,
+      });
+
+      scene.anims.create({
+         key: 'shine-diamond',
+         frames: scene.anims.generateFrameNumbers('diamond', { start: 0, end: 4 }),
          frameRate: 10,
          repeat: -1,
       });
@@ -35,5 +55,10 @@ export default class Treasure {
    collectCoins(player, coin) {
       coin.disableBody(true, true);
       this.scoreScene.updateScore(10);
+   }
+
+   collectDiamonds(player, diamond) {
+      diamond.disableBody(true, true);
+      this.scoreScene.updateScore(100);
    }
 }

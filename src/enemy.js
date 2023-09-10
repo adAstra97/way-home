@@ -18,19 +18,56 @@ export default class Enemy {
          if (object.name === "Bee") {
             let beeEl = this.bees.create(object.x, object.y + 105, 'bee').setSize(32, 38).setOffset(20, 15).setScale(0.9);
 
+            beeEl.flipX = true;
+
             beeEl.move = this.scene.tweens.add({
                targets: beeEl,
                x: beeEl.x + 110,
                yoyo: true,
                repeat: -1,
                duration: 2000,
+               onRepeat: () => {
+                  beeEl.flipX = !beeEl.flipX;
+               },
+               onYoyo: () => {
+                  beeEl.flipX = !beeEl.flipX;
+               },
             });
 
-            beeEl.anims.play('fly-bee');
+            beeEl.play('fly-bee');
          }
       });
 
       return this.bees;
+   }
+
+   createSnails() {
+      this.snails = this.scene.physics.add.group();
+      this.enemyObjects.forEach(object => {
+         if (object.name === "Snail") {
+            let snailEl = this.snails.create(object.x, object.y + 105, 'snail').setSize(28, 24).setOffset(5, 8);
+
+            snailEl.flipX = true;
+
+            snailEl.move = this.scene.tweens.add({
+               targets: snailEl,
+               x: snailEl.x + 110,
+               yoyo: true,
+               repeat: -1,
+               duration: 5000,
+               onRepeat: () => {
+                  snailEl.flipX = !snailEl.flipX;
+               },
+               onYoyo: () => {
+                  snailEl.flipX = !snailEl.flipX;
+               },
+            });
+
+            snailEl.play('crawl-snail');
+         }
+      });
+
+      return this.snails;
    }
 
    createAnimations(scene) {
@@ -38,6 +75,12 @@ export default class Enemy {
          key: 'fly-bee',
          frames: scene.anims.generateFrameNumbers('bee', { start: 0, end: 3 }),
          frameRate: 12,
+         repeat: -1,
+      });
+      scene.anims.create({
+         key: 'crawl-snail',
+         frames: scene.anims.generateFrameNumbers('snail', { start: 0, end: 7 }),
+         frameRate: 11,
          repeat: -1,
       });
       scene.anims.create({

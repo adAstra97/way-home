@@ -16,8 +16,6 @@ export default class ScoreScene extends Phaser.Scene {
       });
       this.score = this.registry.get('score');
       this.text.setText(this.score.toString().padStart(7, '0'));
-
-
    }
 
    updateScore(points) {
