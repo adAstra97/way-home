@@ -2,10 +2,9 @@ import DefaultLevel from "./default";
 import ParallaxHelper from "../parallax-helper";
 import Enemy from '../enemy';
 
-
 export default class Level2 extends DefaultLevel {
    constructor() {
-      super('Level2', 'map2');
+      super('Level3', 'map2');
    }
 
    preload() {
@@ -36,35 +35,21 @@ export default class Level2 extends DefaultLevel {
 
       //add enemies
       this.enemy = new Enemy(this, this.mapFromTilemap, this.scoreScene);
+      this.bees = this.enemy.createBees();
       this.snails = this.enemy.createSnails();
 
+      this.physics.add.collider(this.platforms, this.bees);
       this.physics.add.collider(this.platforms, this.snails);
+      this.physics.add.overlap(this.player.cat, this.bees, this.enemy.checkAgainstEnemies, null, this);
       this.physics.add.overlap(this.player.cat, this.snails, this.enemy.checkAgainstEnemies, null, this);
 
       this.diamonds = this.treasure.createDiamonds();
       this.physics.add.collider(this.diamonds, this.platforms);
       this.physics.add.overlap(this.player.cat, this.diamonds, this.treasure.collectDiamonds, null, this);
 
-      this.createRain();
-
    }
 
    update() {
       super.update();
-   }
-
-   createRain() {
-      const emitter = this.add.particles(0, 0, 'rain', {
-         x: {min: 0, max: this.scale.width * 2 },
-         y: -5,
-         lifespan: 2000,
-         speedX: { min: -150, max: -200 },
-         speedY: 350,
-         scale: { start: 0.5, end: 0 },
-         quantity: 8,
-         blendMode: 'ADD'
-      });
-
-      emitter.setScrollFactor(0);
    }
 }

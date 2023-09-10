@@ -2,6 +2,7 @@ import './style.css';
 import Phaser from 'phaser';
 import Level1 from './src/scenes/level1';
 import Level2 from './src/scenes/level2';
+import Level3 from './src/scenes/level3';
 import ScoreScene from './src/scenes/score-scene';
 import GameOverScene from './src/scenes/game-over';
 
@@ -24,7 +25,7 @@ let config = {
       width: 800,
       height: 503,
    },
-   scene: [Level1, Level2, ScoreScene, GameOverScene],
+   scene: [Level3, Level1, Level2, ScoreScene, GameOverScene],
    physics: {
       default: 'arcade',
       arcade: {
