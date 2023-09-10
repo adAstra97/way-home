@@ -99,11 +99,41 @@ export default class Enemy {
       return this.boars;
    }
 
+   createEagles() {
+      this.eagles = this.scene.physics.add.group();
+      this.enemyObjects.forEach(object => {
+         if (object.name === "Eagle") {
+            let eagleEl = this.eagles.create(object.x, object.y + 105, 'eagle').setSize(30, 30).setScale(1.4);
+            eagleEl.body.setAllowGravity(false);
+
+            eagleEl.flipX = false;
+
+            eagleEl.move = this.scene.tweens.add({
+               targets: eagleEl,
+               y: eagleEl.y - 120,
+               yoyo: true,
+               repeat: -1,
+               duration: 1500,
+            });
+
+            eagleEl.play('fly-eagle');
+         }
+      });
+
+      return this.eagles;
+   }
+
    createAnimations(scene) {
       scene.anims.create({
          key: 'fly-bee',
          frames: scene.anims.generateFrameNumbers('bee', { start: 0, end: 3 }),
          frameRate: 12,
+         repeat: -1,
+      });
+      scene.anims.create({
+         key: 'fly-eagle',
+         frames: scene.anims.generateFrameNumbers('eagle', { start: 0, end: 3 }),
+         frameRate: 10,
          repeat: -1,
       });
       scene.anims.create({
@@ -134,7 +164,7 @@ export default class Enemy {
 
    checkAgainstEnemies(player, enemy) {
 
-      if ((player.y + player.body.height * .5 < enemy.y ) && player.body.velocity.y > 60) {
+      if ((player.y + player.body.height < enemy.y ) && player.body.velocity.y >= 0) {
          this.createEnemyDeath(enemy.x, enemy.y)
          enemy.destroy();
          player.play('jump');

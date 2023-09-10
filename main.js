@@ -26,7 +26,7 @@ let config = {
       width: 800,
       height: 503,
    },
-   scene: [Level4, Level1, Level2, Level3, ScoreScene, GameOverScene],
+   scene: [Level1, Level2, Level3, Level4, ScoreScene, GameOverScene],
    physics: {
       default: 'arcade',
       arcade: {

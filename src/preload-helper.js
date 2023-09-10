@@ -8,6 +8,7 @@ export default class PreloadHelper {
       scene.load.tilemapTiledJSON('map1', './assets/tilemaps/tilemap1.json');
       scene.load.tilemapTiledJSON('map2', './assets/tilemaps/tilemap2.json');
       scene.load.tilemapTiledJSON('map3', './assets/tilemaps/tilemap3.json');
+      scene.load.tilemapTiledJSON('map4', './assets/tilemaps/tilemap4.json');
 
       //bg
       scene.load.image('sky', './assets/images/sky.png');
@@ -35,6 +36,11 @@ export default class PreloadHelper {
       scene.load.spritesheet('boar', './assets/images/Enemies/boar.png', {
          frameWidth: 48,
          frameHeight: 32,
+      });
+
+      scene.load.spritesheet('eagle', './assets/images/Enemies/eagle.png', {
+         frameWidth: 40,
+         frameHeight: 40,
       });
 
       scene.load.spritesheet('enemy-death', './assets/images/Enemies/enemy-death.png', {
