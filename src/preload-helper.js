@@ -7,16 +7,17 @@ export default class PreloadHelper {
       //maps
       scene.load.tilemapTiledJSON('map1', './assets/tilemaps/tilemap1.json');
       scene.load.tilemapTiledJSON('map2', './assets/tilemaps/tilemap2.json');
+      scene.load.tilemapTiledJSON('map3', './assets/tilemaps/tilemap3.json');
 
       //bg
       scene.load.image('sky', './assets/images/sky.png');
       scene.load.image('cloud', './assets/images/cloud.png');
-      scene.load.image('mountain', './assets/images/mountain2.png');
+      scene.load.image('mountain', './assets/images/mountain.png');
       scene.load.image('pine1', './assets/images/pine1.png');
       scene.load.image('pine2', './assets/images/pine2.png');
 
       //sprites-------------------------------------------
-      scene.load.spritesheet('player', './assets/images/Cat-Sheet.png', {
+      scene.load.spritesheet('player', './assets/images/cat.png', {
          frameWidth: 32,
          frameHeight: 32
       });
@@ -27,6 +28,11 @@ export default class PreloadHelper {
       });
 
       scene.load.spritesheet('snail', './assets/images/Enemies/snail.png', {
+         frameWidth: 48,
+         frameHeight: 32,
+      });
+
+      scene.load.spritesheet('boar', './assets/images/Enemies/boar.png', {
          frameWidth: 48,
          frameHeight: 32,
       });
@@ -53,7 +59,7 @@ export default class PreloadHelper {
       //----------------------------------------------------------------
 
       //others
-      scene.load.image('fake_object', './assets/images/Transparency.png');
+      scene.load.image('fake_object', './assets/images/transparency.png');
       scene.load.image('rain', './assets/images/rain.png');
    }
 }

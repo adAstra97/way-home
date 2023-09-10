@@ -10,7 +10,7 @@ export default class ParallaxHelper {
          const m = scene.add.image(x, height, texture)
          .setOrigin(0, 1)
          .setScrollFactor(scrollFactor)
-         .setTint(`${color}`)
+         .setTint(`${color}`);
 
          x += m.width;
       }

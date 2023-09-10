@@ -4,7 +4,7 @@ import Enemy from '../enemy';
 
 export default class Level2 extends DefaultLevel {
    constructor() {
-      super('Level3', 'map3');
+      super('Level4', 'map3');
    }
 
    preload() {
@@ -16,22 +16,22 @@ export default class Level2 extends DefaultLevel {
       const totalWidth = width * 2.5;
 
       this.add.image(0, 0, 'sky')
-      .setScrollFactor(0)
-      .setOrigin(0, 0)
-      .setScale(1.2)
-      .setTint('0x464646');
+         .setScrollFactor(0)
+         .setOrigin(0, 0)
+         .setScale(1.2);
 
-      this.createStars();
-      ParallaxHelper.createParallaxBg(this, totalWidth, 280, 'mountain', 0.4, '0x898989');
-      ParallaxHelper.createParallaxBg(this, totalWidth, 330, 'pine1', 0.8, '0x788B79');
-      ParallaxHelper.createParallaxBg(this, totalWidth, 400, 'pine2', 1, '0x788B79');
+      ParallaxHelper.createParallaxBg(this, totalWidth, 150, 'cloud', 0.1);
+      ParallaxHelper.createParallaxBg(this, totalWidth, 280, 'mountain', 0.4);
+      ParallaxHelper.createParallaxBg(this, totalWidth, 330, 'pine1', 0.8, '0xBFFFA5');
+      ParallaxHelper.createParallaxBg(this, totalWidth, 400, 'pine2', 1, '0xBFFFA5');
+
 
       this.cameras.main.setBounds(0,0, width * 2.5, height);
 
       super.create();
 
-      this.platforms.setTint('0x777A77');
-      this.decoration.setTint('0x777A77');
+      // this.platforms.setTint('0x777A77');
+      // this.decoration.setTint('0x777A77');
 
       //add enemies
       this.enemy = new Enemy(this, this.mapFromTilemap, this.scoreScene);

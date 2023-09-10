@@ -70,6 +70,35 @@ export default class Enemy {
       return this.snails;
    }
 
+   createBoars() {
+      this.boars = this.scene.physics.add.group();
+      this.enemyObjects.forEach(object => {
+         if (object.name === "Boar") {
+            let boarEl = this.boars.create(object.x, object.y + 105, 'boar').setSize(34, 24).setOffset(5, 8);
+
+            boarEl.flipX = true;
+
+            boarEl.move = this.scene.tweens.add({
+               targets: boarEl,
+               x: boarEl.x + 130,
+               yoyo: true,
+               repeat: -1,
+               duration: 2000,
+               onRepeat: () => {
+                  boarEl.flipX = !boarEl.flipX;
+               },
+               onYoyo: () => {
+                  boarEl.flipX = !boarEl.flipX;
+               },
+            });
+
+            boarEl.play('boar');
+         }
+      });
+
+      return this.boars;
+   }
+
    createAnimations(scene) {
       scene.anims.create({
          key: 'fly-bee',
@@ -80,6 +109,12 @@ export default class Enemy {
       scene.anims.create({
          key: 'crawl-snail',
          frames: scene.anims.generateFrameNumbers('snail', { start: 0, end: 7 }),
+         frameRate: 11,
+         repeat: -1,
+      });
+      scene.anims.create({
+         key: 'boar',
+         frames: scene.anims.generateFrameNumbers('boar', { start: 0, end: 5 }),
          frameRate: 11,
          repeat: -1,
       });
@@ -99,7 +134,7 @@ export default class Enemy {
 
    checkAgainstEnemies(player, enemy) {
 
-      if ((player.y + player.body.height * .5 < enemy.y ) && player.body.velocity.y > 100) {
+      if ((player.y + player.body.height * .5 < enemy.y ) && player.body.velocity.y > 60) {
          this.createEnemyDeath(enemy.x, enemy.y)
          enemy.destroy();
          player.play('jump');
