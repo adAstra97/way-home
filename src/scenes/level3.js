@@ -30,6 +30,24 @@ export default class Level2 extends DefaultLevel {
 
       super.create();
 
+      this.bgSound = this.sound.add('scene3-audio');
+
+      if (!this.sound.locked) {
+         // already unlocked so play
+         this.bgSound.play({
+            loop: true,
+            volume: 0.1,
+         });
+      } else {
+         // wait for 'unlocked' to fire and then play
+         this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
+            this.bgSound.play({
+               loop: true,
+               volume: 0.08,
+            });
+         });
+      }
+
       this.platforms.setTint('0x777A77');
       this.decoration.setTint('0x777A77');
 

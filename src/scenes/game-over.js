@@ -20,10 +20,16 @@ export default class GameOverScene extends Phaser.Scene {
 
       reloadButton.setInteractive();
       reloadButton.on('pointerdown', () => {
+         this.sound.play('sound-btn', {
+            volume: 0.1,
+         });
          this.scene.start('Level1');
       });
 
       this.input.keyboard.on('keydown-ENTER', () => {
+         this.sound.play('sound-btn', {
+            volume: 0.1,
+         });
          this.scene.start('Level1');
       });
    }

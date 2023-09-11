@@ -15,6 +15,7 @@ export default class DefaultLevel extends Phaser.Scene {
       };
       this.mapKey = map;
       this.mapFromTilemap;
+      this.bgSound;
    }
 
    preload() {
@@ -23,11 +24,11 @@ export default class DefaultLevel extends Phaser.Scene {
 
    create() {
       this.gameOver = false;
+      this.sound.pauseOnBlur = false;
 
-//////////////////////////////////////////////////
       this.scene.launch('ScoreScene');
       this.scoreScene = this.scene.get('ScoreScene');
-// если не СРАБОТАЕТ ТО ПЕРЕННЕСТИ ТРЕЖЕ И ЭТО В КАЖДЫЙ ЛВЛ
+
       //add cart
       this.mapFromTilemap = this.make.tilemap({key: this.mapKey, tileHeight: 16, tileWidth: 16});
 
@@ -66,28 +67,12 @@ export default class DefaultLevel extends Phaser.Scene {
       //add water borders
       this.createWaterBorders(this.mapFromTilemap, this.player.cat);
 
-      //add campfire
-      const campfirePoint = this.mapFromTilemap.findObject("Campfire", obj => obj.name === "Campfire");
-      this.campfire = this.physics.add.sprite(campfirePoint.x, campfirePoint.y + 110, 'campfire');
-
-      if (!this.anims.exists('fire')) {
-         this.anims.create({
-            key: 'fire',
-            frames: this.anims.generateFrameNumbers('campfire'),
-            frameRate: 10,
-            repeat: -1,
-         });
+      if (this.levelKey !== 'Level5') {
+         //add campfire
+         this.createCampfirePoint();
+      } else {
+         this.createFinishPoint();
       }
-      this.campfire.play('fire');
-      this.physics.add.collider(this.campfire, this.platforms);
-      this.physics.add.overlap(this.campfire, this.player.cat, () => {
-         this.cameras.main.fade(800, 0, 0, 0, false, function(camera, progress) {
-            if (progress > .9) {
-            this.scene.stop(this.levelKey);
-            this.scene.start(this.nextLevel[this.levelKey]);
-            }
-         });
-      }, null, this);
    }
 
    update(time, delta) {
@@ -95,10 +80,11 @@ export default class DefaultLevel extends Phaser.Scene {
       if (this.gameOver) {
 
          this.time.addEvent({
-            delay: 1200,
+            delay: 2000,
             callback: () => {
                this.registry.set('score', 0);
                this.scene.stop(this.levelKey);
+               this.shutDown();
                this.scene.start('GameOverScene');
             },
             callbackScope: this,
@@ -121,9 +107,75 @@ export default class DefaultLevel extends Phaser.Scene {
 
       // water & cat
       this.physics.add.overlap(player, fakeObjects, () => {
+         this.sound.play('sound-water', {
+            volume: 0.15,
+         });
          this.player.destroy();
          this.gameOver = true;
-         this.cameras.main.fade(800, 0, 0, 0, false, null);
+         this.cameras.main.fade(2000, 0, 0, 0, false, null);
       }, null, this);
+   }
+
+   createCampfirePoint() {
+      const campfirePoint = this.mapFromTilemap.findObject("Campfire", obj => obj.name === "Campfire");
+      this.campfire = this.physics.add.sprite(campfirePoint.x, campfirePoint.y + 110, 'campfire');
+
+      if (!this.anims.exists('fire')) {
+         this.anims.create({
+            key: 'fire',
+            frames: this.anims.generateFrameNumbers('campfire'),
+            frameRate: 10,
+            repeat: -1,
+         });
+      }
+      this.campfire.play('fire');
+      this.physics.add.collider(this.campfire, this.platforms);
+      this.physics.add.overlap(this.campfire, this.player.cat, () => {
+         this.shutDown();
+         if (!this.soundIsPlaying) {
+            this.soundIsPlaying = true;
+            this.sound.play('sound-complete', {
+               volume: 0.07,
+            });
+         }
+         this.cameras.main.fade(2000, 0, 0, 0, false, function(camera, progress) {
+            if (progress > .9) {
+               this.scene.stop(this.levelKey);
+               this.scene.start(this.nextLevel[this.levelKey]);
+            }
+         });
+      }, null, this);
+   }
+
+   createFinishPoint() {
+      const finishPoint = this.mapFromTilemap.findObject("Finish", obj => obj.name === "Finish Point");
+      this.finish = this.physics.add.sprite(finishPoint.x, finishPoint.y, 'finish').setScale(1.5);
+      this.physics.add.collider(this.finish, this.platforms);
+      this.physics.add.overlap(this.finish, this.player.cat, () => {
+         this.shutDown();
+         if (!this.soundIsPlaying) {
+            this.soundIsPlaying = true;
+            this.sound.play('sound-finish', {
+               volume: 0.1,
+            });
+         }
+         this.time.addEvent({
+            delay: 2500,
+            callback: () => {
+               this.cameras.main.fade(800, 0, 0, 0, false, function(camera, progress) {
+                  if (progress > .9) {
+                  this.scene.stop(this.levelKey);
+                  this.scene.start('Finish');
+                  }
+               });
+            },
+            callbackScope: this,
+            loop: false,
+         });
+      }, null, this);
+   }
+
+   shutDown() {
+      this.bgSound.stop();
    }
 }

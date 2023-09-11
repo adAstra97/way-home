@@ -53,7 +53,9 @@ export default class Player {
       // Player can jump while walking any direction by pressing the space bar
       // or the 'UP' arrow
       if ((cursors.space.isDown) && cat.body.onFloor()) {
-         // this.scene.jumpSound.play();
+         this.scene.sound.play('sound-jump', {
+            volume: 0.15,
+         });
          cat.setVelocityY(-speed);
          cat.play('jump', true);
       }

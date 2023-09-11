@@ -53,11 +53,17 @@ export default class Treasure {
    }
 
    collectCoins(player, coin) {
+      this.sound.play('sound-coin', {
+         volume: 0.1,
+      });
       coin.disableBody(true, true);
       this.scoreScene.updateScore(10);
    }
 
    collectDiamonds(player, diamond) {
+      this.sound.play('sound-diamond', {
+         volume: 0.1,
+      });
       diamond.disableBody(true, true);
       this.scoreScene.updateScore(100);
    }

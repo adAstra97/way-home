@@ -16,7 +16,7 @@ export default class Enemy {
       this.bees = this.scene.physics.add.group();
       this.enemyObjects.forEach(object => {
          if (object.name === "Bee") {
-            let beeEl = this.bees.create(object.x, object.y + 105, 'bee').setSize(32, 38).setOffset(20, 15).setScale(0.9);
+            let beeEl = this.bees.create(object.x, object.y + 105, 'bee').setSize(32, 32).setOffset(16, 15);
 
             beeEl.flipX = true;
 
@@ -45,7 +45,7 @@ export default class Enemy {
       this.snails = this.scene.physics.add.group();
       this.enemyObjects.forEach(object => {
          if (object.name === "Snail") {
-            let snailEl = this.snails.create(object.x, object.y + 105, 'snail').setSize(28, 24).setOffset(5, 8);
+            let snailEl = this.snails.create(object.x, object.y + 105, 'snail').setSize(28, 24).setOffset(5, 8).setScale(1.2);
 
             snailEl.flipX = true;
 
@@ -74,7 +74,7 @@ export default class Enemy {
       this.boars = this.scene.physics.add.group();
       this.enemyObjects.forEach(object => {
          if (object.name === "Boar") {
-            let boarEl = this.boars.create(object.x, object.y + 105, 'boar').setSize(34, 24).setOffset(5, 8);
+            let boarEl = this.boars.create(object.x, object.y + 105, 'boar').setSize(34, 24).setOffset(5, 8).setScale(1.5);
 
             boarEl.flipX = true;
 
@@ -164,15 +164,23 @@ export default class Enemy {
 
    checkAgainstEnemies(player, enemy) {
 
-      if ((player.y + player.body.height < enemy.y ) && player.body.velocity.y >= 0) {
+      if (player.y + player.body.height * .5 <= enemy.y - enemy.body.height * .5) {
+         this.scene.sound.play('sound-kill', {
+            volume: 0.03,
+         });
          this.createEnemyDeath(enemy.x, enemy.y)
          enemy.destroy();
+
          player.play('jump');
+
          player.body.velocity.y = -100;
          this.scoreScene.updateScore(50);
       } else {
          this.scene.gameOver = true;
          enemy.move.stop();
+         this.scene.sound.play('sound-dead', {
+            volume: 0.15,
+         })
          this.scene.physics.world.disableBody(player.body);
 
          player.play('death-player');
@@ -185,7 +193,7 @@ export default class Enemy {
          });
 
          this.scene.time.addEvent({
-            delay: 300,
+            delay: 1000,
             callback: () => {
                this.scene.cameras.main.fade(1000, 0, 0, 0, false, null);
             },

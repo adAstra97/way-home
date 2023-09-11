@@ -30,6 +30,23 @@ export default class Level2 extends DefaultLevel {
       this.cameras.main.setBounds(0,0, width * 2.5, height);
 
       super.create();
+      this.bgSound = this.sound.add('scene2-audio');
+
+      if (!this.sound.locked) {
+         // already unlocked so play
+         this.bgSound.play({
+            loop: true,
+            volume: 0.15,
+         });
+      } else {
+         // wait for 'unlocked' to fire and then play
+         this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
+            this.bgSound.play({
+               loop: true,
+               volume: 0.15,
+            });
+         });
+      }
 
       this.platforms.setTint('0xADA7A7');
       this.decoration.setTint('0xC5BCBC');

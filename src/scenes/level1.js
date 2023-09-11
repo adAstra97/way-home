@@ -31,6 +31,25 @@ export default class Level1 extends DefaultLevel {
 
       super.create();
 
+      this.bgSound = this.sound.add('scene1-audio');
+
+      if (!this.sound.locked) {
+         // already unlocked so play
+         this.bgSound.play({
+            loop: true,
+            volume: 0.1,
+         });
+      } else {
+         // wait for 'unlocked' to fire and then play
+         this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
+            this.bgSound.play({
+               loop: true,
+               volume: 0.1,
+            });
+         });
+      }
+
+
       //add enemies
       this.enemy = new Enemy(this, this.mapFromTilemap, this.scoreScene);
       this.bees = this.enemy.createBees();
