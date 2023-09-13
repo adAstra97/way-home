@@ -36,14 +36,14 @@ export default class Level2 extends DefaultLevel {
          // already unlocked so play
          this.bgSound.play({
             loop: true,
-            volume: 0.15,
+            volume: 0.1,
          });
       } else {
          // wait for 'unlocked' to fire and then play
          this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
             this.bgSound.play({
                loop: true,
-               volume: 0.15,
+               volume: 0.1,
             });
          });
       }

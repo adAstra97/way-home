@@ -13,7 +13,7 @@ export default class GameOverScene extends Phaser.Scene {
          fontSize: 40,
          }).setOrigin(0.5);
 
-      const reloadButton = this.add.text(400, 310, 'Press ENTER to restart', {
+      const reloadButton = this.add.text(400, 310, 'Press ENTER to go to the menu', {
          font: '18px Public Pixel',
          fill: '#ffffff',
       }).setOrigin(0.5);
@@ -23,14 +23,14 @@ export default class GameOverScene extends Phaser.Scene {
          this.sound.play('sound-btn', {
             volume: 0.1,
          });
-         this.scene.start('Level1');
+         this.scene.start('MenuScene');
       });
 
       this.input.keyboard.on('keydown-ENTER', () => {
          this.sound.play('sound-btn', {
             volume: 0.1,
          });
-         this.scene.start('Level1');
+         this.scene.start('MenuScene');
       });
    }
 }

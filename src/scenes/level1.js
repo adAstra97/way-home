@@ -12,7 +12,7 @@ export default class Level1 extends DefaultLevel {
       super.preload();
    }
 
-   create() {
+   create(data) {
 
       const {width, height} = this.scale;
       const totalWidth = width * 2.5;
@@ -31,7 +31,7 @@ export default class Level1 extends DefaultLevel {
 
       super.create();
 
-      this.bgSound = this.sound.add('scene1-audio');
+      this.bgSound = data.musicBg;
 
       if (!this.sound.locked) {
          // already unlocked so play

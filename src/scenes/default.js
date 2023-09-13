@@ -25,6 +25,7 @@ export default class DefaultLevel extends Phaser.Scene {
    create() {
       this.gameOver = false;
       this.sound.pauseOnBlur = false;
+      this.soundIsPlaying = false;
 
       this.scene.launch('ScoreScene');
       this.scoreScene = this.scene.get('ScoreScene');
@@ -165,7 +166,8 @@ export default class DefaultLevel extends Phaser.Scene {
                this.cameras.main.fade(800, 0, 0, 0, false, function(camera, progress) {
                   if (progress > .9) {
                   this.scene.stop(this.levelKey);
-                  this.scene.start('Finish');
+                  this.scene.stop('ScoreScene');
+                  this.scene.start('FinishScene');
                   }
                });
             },

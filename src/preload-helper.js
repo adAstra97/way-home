@@ -69,6 +69,7 @@ export default class PreloadHelper {
       scene.load.image('fake_object', './assets/images/transparency.png');
       scene.load.image('rain', './assets/images/rain.png');
       scene.load.image('finish', './assets/images/house.png');
+      scene.load.image('title', './assets/images/title.png');
 
       //audio
       scene.load.audio('scene1-audio', './assets/music/game-bg.mp3');
@@ -86,5 +87,6 @@ export default class PreloadHelper {
       scene.load.audio('sound-kill', './assets/music/sounds/kill.mp3');
       scene.load.audio('sound-complete', './assets/music/sounds/level-complete.wav');
       scene.load.audio('sound-finish', './assets/music/sounds/win.mp3');
+      scene.load.audio('sound-menu-change', './assets/music/sounds/menu-change.wav');
    }
 }

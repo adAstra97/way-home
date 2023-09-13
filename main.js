@@ -1,6 +1,7 @@
 import './style.css';
 import Phaser from 'phaser';
 import Preloader from './src/scenes/preloader';
+import MenuScene from './src/scenes/menu';
 import Level1 from './src/scenes/level1';
 import Level2 from './src/scenes/level2';
 import Level3 from './src/scenes/level3';
@@ -8,11 +9,14 @@ import Level4 from './src/scenes/level4';
 import Level5 from './src/scenes/level5';
 import ScoreScene from './src/scenes/score-scene';
 import GameOverScene from './src/scenes/game-over';
+import FinishScene from './src/scenes/finish-scene';
 
 let config = {
    type: Phaser.AUTO,
    backgroundColor: '0x000000',
+   parent: game_container,
    fps: {target: 40},
+   dom: {createContainer: true},
    render: {
       pixelArt: true
    },
@@ -28,12 +32,12 @@ let config = {
       width: 800,
       height: 503,
    },
-   scene: [Preloader, Level1, Level2, Level3, Level4, Level5, ScoreScene, GameOverScene],
+   scene: [Preloader, MenuScene, Level1, Level2, Level3, Level4, Level5, ScoreScene, FinishScene, GameOverScene],
    physics: {
       default: 'arcade',
       arcade: {
          gravity: { y: 300 },
-         debug: true,
+         debug: false,
          fixedStep: false,
          enableBody: true,
       },

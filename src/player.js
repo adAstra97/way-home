@@ -41,17 +41,13 @@ export default class Player {
             cat.play('walk', true);
          }
       } else {
-         // If no keys are pressed, the player keeps still
          cat.setVelocityX(0);
-         // Only show the idle animation if the player is footed
-         // If this is not included, the player would look idle while jumping
+
          if (cat.body.onFloor()) {
             cat.play('idle', true);
          }
       }
 
-      // Player can jump while walking any direction by pressing the space bar
-      // or the 'UP' arrow
       if ((cursors.space.isDown) && cat.body.onFloor()) {
          this.scene.sound.play('sound-jump', {
             volume: 0.15,
@@ -63,7 +59,6 @@ export default class Player {
       if (cat.body.velocity.x > 0) {
          cat.setFlipX(false);
       } else if (cat.body.velocity.x < 0) {
-         // otherwise, make them face the other side
          cat.setFlipX(true);
       }
 
@@ -92,13 +87,6 @@ export default class Player {
          frames: scene.anims.generateFrameNumbers('player', { frames: [152,153,154,155,160,161,162,163] }),
          frameRate: 10,
          repeat: 0,
-      });
-      scene.anims.create({
-         key: 'look',
-         frames: scene.anims.generateFrameNumbers('player', { frames: [200,201,202,203,208,209,210,211] }),
-         frameRate: 10,
-         repeat: -1,
-         yoyo: true,
       });
       scene.anims.create({
          key: 'death-player',
