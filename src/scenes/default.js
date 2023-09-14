@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
-import PreloadHelper from '../preload-helper';
-import Player from '../player';
-import Treasure from '../treasure';
+import PreloadHelper from '../helpers/preload-helper';
+import Player from '../objects/player';
+import Treasure from '../objects/treasure';
 
 export default class DefaultLevel extends Phaser.Scene {
    constructor(key, map) {

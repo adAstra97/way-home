@@ -1,4 +1,4 @@
-import ParallaxHelper from "../parallax-helper";
+import ParallaxHelper from "../helpers/parallax-helper";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, get, update, child } from 'firebase/database';
 

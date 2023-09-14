@@ -1,6 +1,6 @@
 import DefaultLevel from "./default";
-import ParallaxHelper from "../parallax-helper";
-import Enemy from '../enemy';
+import ParallaxHelper from "../helpers/parallax-helper";
+import Enemy from "../objects/enemy";
 
 
 export default class Level1 extends DefaultLevel {
@@ -20,10 +20,11 @@ export default class Level1 extends DefaultLevel {
       this.add.image(0, 0, 'sky')
          .setScrollFactor(0)
          .setOrigin(0, 0)
-         .setScale(1.2);
+         .setScale(1.2)
+         .setTint('0xFFF2F2');
 
-      ParallaxHelper.createParallaxBg(this, totalWidth, 150, 'cloud', 0.1);
-      ParallaxHelper.createParallaxBg(this, totalWidth, 280, 'mountain', 0.4);
+      ParallaxHelper.createParallaxBg(this, totalWidth, 150, 'cloud', 0.1, '0xFFF2F2');
+      ParallaxHelper.createParallaxBg(this, totalWidth, 280, 'mountain', 0.4, '0xFFF2F2');
       ParallaxHelper.createParallaxBg(this, totalWidth, 330, 'pine1', 0.8, '0xBFFFA5');
       ParallaxHelper.createParallaxBg(this, totalWidth, 400, 'pine2', 1, '0xBFFFA5');
 

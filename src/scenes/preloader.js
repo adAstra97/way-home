@@ -1,4 +1,4 @@
-import PreloadHelper from "../preload-helper";
+import PreloadHelper from "../helpers/preload-helper";
 
 export default class Preloader extends Phaser.Scene {
    constructor() {
@@ -29,7 +29,7 @@ export default class Preloader extends Phaser.Scene {
       this.load.on('progress', value => {
          percentText.setText(parseInt(value * 100) + '%');
          progressBar.clear();
-         progressBar.fillStyle(0xffffff, 1);
+         progressBar.fillStyle(0xFFFFFF, 1);
          progressBar.fillRect(250, 280, 300 * value, 30);
       });
 

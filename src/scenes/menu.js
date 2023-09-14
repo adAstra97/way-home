@@ -1,4 +1,4 @@
-import ParallaxHelper from "../parallax-helper";
+import ParallaxHelper from "../helpers/parallax-helper";
 import FinishScene from "./finish-scene";
 
 export default class MenuScene extends Phaser.Scene {
@@ -33,13 +33,21 @@ export default class MenuScene extends Phaser.Scene {
       this.add.image(0, 0, 'sky')
       .setScrollFactor(0)
       .setOrigin(0, 0)
-      .setScale(1.2);
+      .setScale(1.2)
+      .setTint('0xFFF2F2');
 
-      ParallaxHelper.createParallaxBg(this, totalWidth, 180, 'cloud', 0.1);
-      ParallaxHelper.createParallaxBg(this, totalWidth, 300, 'mountain', 0.4);
-      ParallaxHelper.createParallaxBg(this, totalWidth, 385, 'pine1', 0.8);
-      ParallaxHelper.createParallaxBg(this, totalWidth, 505, 'pine2', 1);
+      //infinity parallax
+      this.cloud = this.add.tileSprite(0, 50, totalWidth, height, 'cloud').setOrigin(0, 0).setTint('0xFFF2F2');
+      this.mountain = this.add.tileSprite(0, 185, totalWidth, height, 'mountain').setOrigin(0, 0).setTint('0xFFF2F2');
+      this.pine1 = this.add.tileSprite(0, 245, totalWidth, height, 'pine1').setOrigin(0, 0).setTint('0xFFF2F2');
+      this.pine2 = this.add.tileSprite(0, 300, totalWidth, height, 'pine2').setOrigin(0, 0).setTint('0xFFF2F2');
 
+      this.cameras.main.setBounds(0, 0, 1600, 600);
+      this.cameras.main.setScroll(0);
+
+      this.scene.launch(null, { background: this.background });
+
+      //title
       const title = this.add.image(width * .5, height * .3, 'title').setOrigin(0.5);
 
       this.hoverSprite = this.add.sprite(100, 100, 'player')
@@ -126,6 +134,13 @@ export default class MenuScene extends Phaser.Scene {
          this.scoresButton.setFill('#ffffff');
          this.hoverSprite.setVisible(false);
       });
+   }
+
+   update(time, delta) {
+      this.cloud.tilePositionX += 0.01 * delta;
+      this.mountain.tilePositionX += 0.02 * delta;
+      this.pine1.tilePositionX += 0.04 * delta;
+      this.pine2.tilePositionX += 0.05 * delta;
    }
 
    disableButtons() {

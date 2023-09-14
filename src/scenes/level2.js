@@ -1,6 +1,6 @@
 import DefaultLevel from "./default";
-import ParallaxHelper from "../parallax-helper";
-import Enemy from '../enemy';
+import ParallaxHelper from "../helpers/parallax-helper";
+import Enemy from "../objects/enemy";
 
 
 export default class Level2 extends DefaultLevel {

@@ -7,7 +7,7 @@ import Level2 from './src/scenes/level2';
 import Level3 from './src/scenes/level3';
 import Level4 from './src/scenes/level4';
 import Level5 from './src/scenes/level5';
-import ScoreScene from './src/scenes/score-scene';
+import ScoreScene from './src/ui/score-scene';
 import GameOverScene from './src/scenes/game-over';
 import FinishScene from './src/scenes/finish-scene';
 
