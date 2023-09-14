@@ -14,7 +14,7 @@ export default class Treasure {
       this.coins = this.scene.physics.add.staticGroup();
       this.treasureObjects.forEach(object => {
          if (object.name === 'gold') {
-            let coinEl = this.coins.create(object.x + 10, object.y + 105, 'coin').setScale(0.6);
+            let coinEl = this.coins.create(object.x + 10, object.y + 105, 'coin').setScale(0.8);
 
             coinEl.anims.play('shine-coin');
          }
