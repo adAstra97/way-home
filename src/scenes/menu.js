@@ -39,8 +39,8 @@ export default class MenuScene extends Phaser.Scene {
       //infinity parallax
       this.cloud = this.add.tileSprite(0, 50, totalWidth, height, 'cloud').setOrigin(0, 0).setTint('0xFFF2F2');
       this.mountain = this.add.tileSprite(0, 185, totalWidth, height, 'mountain').setOrigin(0, 0).setTint('0xFFF2F2');
-      this.pine1 = this.add.tileSprite(0, 245, totalWidth, height, 'pine1').setOrigin(0, 0).setTint('0xFFF2F2');
-      this.pine2 = this.add.tileSprite(0, 300, totalWidth, height, 'pine2').setOrigin(0, 0).setTint('0xFFF2F2');
+      this.pine1 = this.add.tileSprite(0, 250, totalWidth, height, 'pine1').setOrigin(0, 0).setTint('0xFFF2F2');
+      this.pine2 = this.add.tileSprite(0, 305, totalWidth, height, 'pine2').setOrigin(0, 0).setTint('0xFFF2F2');
 
       this.cameras.main.setBounds(0, 0, 1600, 600);
       this.cameras.main.setScroll(0);
