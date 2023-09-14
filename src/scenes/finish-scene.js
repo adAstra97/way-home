@@ -116,7 +116,7 @@ export default class FinishScene extends Phaser.Scene {
             Enter your name to save
          your score on the leaderboard!
       `, {
-         fill: '#ffffff',
+         fill: '#FFCB9E',
          font: '16px Public Pixel',
          lineSpacing: 10,
       }).setOrigin(0.5).setDepth(0);

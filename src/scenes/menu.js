@@ -53,6 +53,21 @@ export default class MenuScene extends Phaser.Scene {
       //title
       const title = this.add.image(width * .5, height * .3, 'title').setOrigin(0.5);
 
+      this.titleCat = this.add.sprite(356, 165, 'player')
+      .setScale(2.2);
+
+      if (!this.anims.exists('step')) {
+         this.anims.create({
+            key: 'step',
+            frames: this.anims.generateFrameNumbers('player', { start: 384, end: 391 }),
+            frameRate: 10,
+            repeat: -1,
+         });
+      }
+
+      this.titleCat.play('step');
+
+      //cat for buttons
       this.hoverSprite = this.add.sprite(100, 100, 'player')
       .setScale(2)
       .setVisible(false);
