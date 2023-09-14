@@ -63,6 +63,11 @@ export default class PreloadHelper {
          frameWidth: 32,
          frameHeight: 32,
       });
+      //sound sprite
+      scene.load.spritesheet('switch-sound', './assets/images/soundOn-Off.png', {
+         frameWidth: 30,
+         frameHeight: 30,
+      });
       //----------------------------------------------------------------
 
       //others
@@ -70,6 +75,9 @@ export default class PreloadHelper {
       scene.load.image('rain', './assets/images/rain.png');
       scene.load.image('finish', './assets/images/house.png');
       scene.load.image('title', './assets/images/title.png');
+
+      // scene.load.image('sound-off', './assets/images/soundOnOff/soundOffWhite.png');
+      // scene.load.image('sound-on', './assets/images/soundOnOff/soundOnWhite.png');
 
       //audio
       scene.load.audio('scene1-audio', './assets/music/game-bg.mp3');

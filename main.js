@@ -8,6 +8,7 @@ import Level3 from './src/scenes/level3';
 import Level4 from './src/scenes/level4';
 import Level5 from './src/scenes/level5';
 import ScoreScene from './src/ui/score-scene';
+import SoundScene from './src/ui/sound-scene';
 import GameOverScene from './src/scenes/game-over';
 import FinishScene from './src/scenes/finish-scene';
 
@@ -32,7 +33,7 @@ let config = {
       width: 800,
       height: 503,
    },
-   scene: [Preloader, MenuScene, Level1, Level2, Level3, Level4, Level5, ScoreScene, FinishScene, GameOverScene],
+   scene: [Preloader, MenuScene, Level1, Level2, Level3, Level4, Level5, ScoreScene, FinishScene, SoundScene, GameOverScene],
    physics: {
       default: 'arcade',
       arcade: {

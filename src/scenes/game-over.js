@@ -4,6 +4,10 @@ export default class GameOverScene extends Phaser.Scene {
    }
 
    create() {
+
+      this.scene.stop('ScoreScene');
+      this.scene.stop('SoundScene');
+
       this.angryCat = this.add.sprite(390, 140, 'player').setScale(2);
 
       this.angryCat.play('game-over');

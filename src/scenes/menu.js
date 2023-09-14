@@ -11,6 +11,9 @@ export default class MenuScene extends Phaser.Scene {
       const totalWidth = width * 2.5;
 
       this.sound.pauseOnBlur = false;
+      this.soundMenuChange = this.sound.add('sound-menu-change');
+
+      this.scene.launch('SoundScene', {soundChange: this.soundMenuChange});
 
       this.bgSound = this.sound.add('scene1-audio');
 
@@ -61,8 +64,6 @@ export default class MenuScene extends Phaser.Scene {
             frameRate: 10,
          });
       }
-
-      this.soundMenuChange = this.sound.add('sound-menu-change');
 
       //PLAY BTN
       this.playButton = this.add.text(width * .5, height * .6, 'PLAY', {
