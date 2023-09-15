@@ -75,9 +75,7 @@ export default class PreloadHelper {
       scene.load.image('rain', './assets/images/rain.png');
       scene.load.image('finish', './assets/images/house.png');
       scene.load.image('title', './assets/images/title.png');
-
-      // scene.load.image('sound-off', './assets/images/soundOnOff/soundOffWhite.png');
-      // scene.load.image('sound-on', './assets/images/soundOnOff/soundOnWhite.png');
+      scene.load.image('controls', './assets/images/controls.svg');
 
       //audio
       scene.load.audio('scene1-audio', './assets/music/game-bg.mp3');

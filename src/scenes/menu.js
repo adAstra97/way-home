@@ -51,9 +51,9 @@ export default class MenuScene extends Phaser.Scene {
       this.scene.launch(null, { background: this.background });
 
       //title
-      const title = this.add.image(width * .5, height * .3, 'title').setOrigin(0.5);
+      this.title = this.add.image(width * .5, height * .3, 'title').setOrigin(0.5);
 
-      this.titleCat = this.add.sprite(356, 165, 'player')
+      this.titleCat = this.add.sprite(235, 95, 'player')
       .setScale(2.2);
 
       if (!this.anims.exists('step')) {
@@ -91,12 +91,13 @@ export default class MenuScene extends Phaser.Scene {
       });
       this.playButton.on('pointerdown', () => {
          if (!this.playButton.active) return;
-
-         this.scene.stop('MenuScene');
          this.sound.play('sound-btn', {
             volume: 0.1,
          });
-         this.scene.start('Level1', {'musicBg': this.bgSound});
+
+         setTimeout(() => {
+            this.showRules();
+         }, 1000);
       });
       this.playButton.on('pointerover', () => {
          this.playButton.setFill('#FFBA7E');
@@ -157,6 +158,60 @@ export default class MenuScene extends Phaser.Scene {
       this.mountain.tilePositionX += 0.02 * delta;
       this.pine1.tilePositionX += 0.04 * delta;
       this.pine2.tilePositionX += 0.05 * delta;
+   }
+
+   showRules() {
+      this.title.setVisible(false);
+      this.titleCat.setVisible(false);
+      this.hoverSprite.setVisible(false);
+      this.playButton.setVisible(false);
+      this.scoresButton.setVisible(false);
+
+      const rectangle = this.add.graphics({ fillStyle: { color: 0x000000, alpha: 0.7 } })
+      .fillRoundedRect(96, 20, 600, 470, 15);
+
+      this.textFinish = this.add.text(this.scale.width / 2.5, this.scale.height / 3.5, `
+            Help the kitten get home!
+
+         People may say that cats have 9
+         lives, but this is not true.
+         If you die, you have to start
+         over!
+
+                     Controls:
+      `, {
+         fill: '#ffffff',
+         font: '16px Public Pixel',
+         lineSpacing: 10,
+      }).setOrigin(0.5);
+
+      this.controls = this.add.image(this.scale.width / 1.85, this.scale.height / 2, 'controls').setOrigin(0.5, 0.5);
+
+
+
+      const isStartGame = this.add.text(400, this.scale.height - 50, 'Press ENTER to start', {
+         font: '18px Public Pixel',
+         fill: '#ffffff',
+      }).setOrigin(0.5);
+
+      isStartGame.setInteractive({
+         useHandCursor: true,
+      });
+      isStartGame.on('pointerdown', () => {
+         this.sound.play('sound-btn', {
+            volume: 0.1,
+         });
+         this.scene.stop('MenuScene');
+         this.scene.start('Level1', {'musicBg': this.bgSound});
+      });
+
+      this.input.keyboard.on('keydown-ENTER', () => {
+         this.sound.play('sound-btn', {
+            volume: 0.1,
+         });
+         this.scene.stop('MenuScene');
+         this.scene.start('Level1', {'musicBg': this.bgSound});
+      });
    }
 
    disableButtons() {

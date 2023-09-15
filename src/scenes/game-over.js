@@ -22,7 +22,9 @@ export default class GameOverScene extends Phaser.Scene {
          fill: '#ffffff',
       }).setOrigin(0.5);
 
-      reloadButton.setInteractive();
+      reloadButton.setInteractive({
+         useHandCursor: true,
+      });
       reloadButton.on('pointerdown', () => {
          this.sound.play('sound-btn', {
             volume: 0.1,
