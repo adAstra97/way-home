@@ -61,6 +61,7 @@ input:focus {
   background-color: #3f3f3f;
   border-bottom: 10px solid #3f3f3f;
   border-top: 10px solid #3f3f3f;
+  padding: 0 10px;
 }
 
 canvas {

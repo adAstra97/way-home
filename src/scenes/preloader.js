@@ -6,6 +6,9 @@ export default class Preloader extends Phaser.Scene {
    }
 
    preload() {
+
+      this.scene.launch('OrientationScene');
+
       let progressBar = this.add.graphics();
       let progressBox = this.add.graphics();
 

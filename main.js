@@ -11,14 +11,8 @@ import ScoreScene from './src/ui/score-scene';
 import SoundScene from './src/ui/sound-scene';
 import GameOverScene from './src/scenes/game-over';
 import FinishScene from './src/scenes/finish-scene';
-
-const MAX_SIZE_WIDTH_SCREEN = 1920
-const MAX_SIZE_HEIGHT_SCREEN = 1080
-const MIN_SIZE_WIDTH_SCREEN = 270
-const MIN_SIZE_HEIGHT_SCREEN = 480
-const SIZE_WIDTH_SCREEN = 540
-const SIZE_HEIGHT_SCREEN = 960
-
+import FullscreenScene from './src/ui/fullscreen-scene';
+import OrienatationScene from './src/ui/orientation-scene';
 
 let config = {
    type: Phaser.AUTO,
@@ -41,7 +35,7 @@ let config = {
       width: 800,
       height: 503,
    },
-   scene: [Preloader, MenuScene, Level1, Level2, Level3, Level4, Level5, ScoreScene, FinishScene, SoundScene, GameOverScene],
+   scene: [Preloader, MenuScene, Level1, Level2, Level3, Level4, Level5, ScoreScene, FinishScene, SoundScene, GameOverScene, FullscreenScene, OrienatationScene],
    physics: {
       default: 'arcade',
       arcade: {

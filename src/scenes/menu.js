@@ -14,6 +14,7 @@ export default class MenuScene extends Phaser.Scene {
       this.soundMenuChange = this.sound.add('sound-menu-change');
 
       this.scene.launch('SoundScene', {soundChange: this.soundMenuChange});
+      this.scene.launch('FullscreenScene');
 
       this.bgSound = this.sound.add('scene1-audio');
 

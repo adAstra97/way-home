@@ -68,6 +68,11 @@ export default class PreloadHelper {
          frameWidth: 30,
          frameHeight: 30,
       });
+      //fullscreen sprite
+      scene.load.spritesheet('fullscreen', './assets/images/fullscreen-white.png', {
+         frameWidth: 64,
+         frameHeight: 64,
+      });
       //----------------------------------------------------------------
 
       //others
