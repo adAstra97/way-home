@@ -12,6 +12,14 @@ import SoundScene from './src/ui/sound-scene';
 import GameOverScene from './src/scenes/game-over';
 import FinishScene from './src/scenes/finish-scene';
 
+const MAX_SIZE_WIDTH_SCREEN = 1920
+const MAX_SIZE_HEIGHT_SCREEN = 1080
+const MIN_SIZE_WIDTH_SCREEN = 270
+const MIN_SIZE_HEIGHT_SCREEN = 480
+const SIZE_WIDTH_SCREEN = 540
+const SIZE_HEIGHT_SCREEN = 960
+
+
 let config = {
    type: Phaser.AUTO,
    backgroundColor: '0x000000',
@@ -22,14 +30,14 @@ let config = {
       pixelArt: true
    },
    // scale: {
-      // mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT,
-      // autoCenter: Phaser.Scale.CENTER_BOTH,
+   //    mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT,
+   //    autoCenter: Phaser.Scale.CENTER_BOTH,
+   //    width: 800,
+   //    height: 503,
    // },
       scale: {
       mode: Phaser.Scale.FIT,
       autoCenter: Phaser.Scale.CENTER_BOTH,
-      // width: 350,
-      // height: 208,
       width: 800,
       height: 503,
    },
@@ -45,32 +53,4 @@ let config = {
    },
 };
 
-//    scale: {
-//       mode: Phaser.Scale.FIT,
-//       autoCenter: Phaser.Scale.CENTER_BOTH,
-//       // width: 350,
-//       width: 800,
-//       height: 600,
-//       // height: 208,
-//    },
-
-
 const game = new Phaser.Game(config);
-
-// window.addEventListener('resize', function () {
-//    game.resize(window.innerWidth, window.innerHeight);
-// });
-// function create() {
-//    logo = this.add.image(game.config.width / 2, game.config.height / 2, 'logo');
-//    window.addEventListener('resize', resizeGame);
-// }
-
-// function resizeGame() {
-//    var width = window.innerWidth;
-//    var height = window.innerHeight;
-
-//    game.renderer.resize(width, height);
-//    game.cameras.main.setViewport(0, 0, width, height);
-
-//    logo.setPosition(width / 2, height / 2);
-// }
