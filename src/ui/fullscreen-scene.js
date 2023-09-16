@@ -11,7 +11,7 @@ export default class FullscreenScene extends Phaser.Scene {
             useHandCursor: true,
          });
 
-      button.on('pointerup', () => {
+      button.on('pointerdown', () => {
          if (this.scale.isFullscreen) {
             button.setFrame(0);
 
