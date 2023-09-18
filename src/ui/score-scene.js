@@ -4,9 +4,6 @@ export default class ScoreScene extends Phaser.Scene {
    }
 
    create() {
-      if (!this.registry.has('score')) {
-         this.registry.set('score', 0);
-      }
 
       this.text = this.add.text(10, 10, '0000000', {
          fontFamily: 'Public Pixel',

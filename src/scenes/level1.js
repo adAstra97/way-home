@@ -17,6 +17,8 @@ export default class Level1 extends DefaultLevel {
       const {width, height} = this.scale;
       const totalWidth = width * 2.5;
 
+      this.registry.set('score', 0);
+
       this.add.image(0, 0, 'sky')
          .setScrollFactor(0)
          .setOrigin(0, 0)
