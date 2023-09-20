@@ -83,7 +83,9 @@ export default class FinishScene extends Phaser.Scene {
       }).setOrigin(0.5);
 
       this.getDataFromFirebase().then((data) => {
-         if (data.length < 10 || data[8].score < this.registry.get('score')) {
+         let filteredData = data.sort((a, b) => b.score - a.score);
+
+         if (data.length < 9 || filteredData[8].score < this.registry.get('score')) {
             this.createForm();
          } else {
             const btnToMenu = this.add.text(400, 400, 'Press ENTER to go to the menu', {
