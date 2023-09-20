@@ -19,7 +19,6 @@ let config = {
    backgroundColor: '0x000000',
    parent: game_container,
    fps: {target: 40},
-   dom: {createContainer: true},
    render: {
       pixelArt: true
    },
