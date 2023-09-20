@@ -112,6 +112,7 @@ export default class FinishScene extends Phaser.Scene {
    }
 
    createForm() {
+      //text
       const textForForm = this.add.text(this.scale.width / 2.5, this.textFinish.y + 130, `
             Enter your name to save
          your score on the leaderboard!
@@ -121,9 +122,31 @@ export default class FinishScene extends Phaser.Scene {
          lineSpacing: 10,
       }).setOrigin(0.5).setDepth(0);
 
-      const input = this.add.dom(this.scale.width / 2, this.scale.height / 1.5).createFromHTML('<input type="text" id="playerName" maxlength="15" placeholder="Your name">').setOrigin(0.5, 0.5).setDepth(0);
+      //field
+      this.playerNameText = this.add.text(this.scale.width / 2, this.scale.height / 2 + 90, '', {
+         font: '22px Public Pixel',
+         fill: '#ffffff',
+      }).setOrigin(0.5, 0.5).setDepth(0);
 
-      const saveButton = this.add.text(this.scale.width / 2, input.y + 60, 'Save', {
+      //underline
+      const underline = this.add.graphics();
+      underline.lineStyle(2, 0xffffff, 1);
+
+      underline.moveTo(220, 360);
+      underline.lineTo(570, 360);
+      underline.strokePath();
+
+      //event
+      this.input.keyboard.on('keydown', (event) => {
+         if (event.key.match(/^[a-zA-Zа-яА-Я0-9]$/) && this.playerNameText.text.length < 15) {
+            this.playerNameText.text += event.key;
+         } else if (event.key === 'Backspace' && this.playerNameText.text.length > 0) {
+            this.playerNameText.text = this.playerNameText.text.slice(0, -1);
+         }
+      });
+
+      //save
+      const saveButton = this.add.text(this.scale.width / 2, this.playerNameText.y + 60, 'Save', {
          fill: '#ffffff',
          font: '24px Public Pixel',
       }).setOrigin(0.5).setDepth(0);
@@ -135,21 +158,21 @@ export default class FinishScene extends Phaser.Scene {
          this.sound.play('sound-btn', {
             volume: 0.1,
          });
-         let inputElement = input.node.querySelector('input');
-         let playerName = inputElement.value;
+
          const points = this.registry.get('score');
          const idPlayer = Date.now();
 
-         if (playerName === '') return;
+         if (this.playerNameText.text === '') return;
 
-         inputElement.style.display = 'none';
+         this.playerNameText.setVisible(false);
+         underline.setVisible(false);
          saveButton.setVisible(false);
          this.textFinish.setVisible(false);
          this.happyCat.setVisible(false);
          textForForm.setVisible(false);
 
-         this.saveToFirebase(playerName, points, idPlayer);
-         inputElement.value = '';
+         this.saveToFirebase(this.playerNameText.text, points, idPlayer);
+         this.playerNameText.text = '';
          this.showDataFromFirebase();
       });
 
@@ -234,6 +257,7 @@ export default class FinishScene extends Phaser.Scene {
             this.sceneRef.enableButtons();
          } else {
             this.bgSound.stop();
+            this.scene.stop('FinishScene');
             this.scene.start('MenuScene');
          }
       });
