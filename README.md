@@ -16,14 +16,9 @@ This is my own game, made as a final project in frontend courses. The main goal 
 
 ### Information
 
-<!-- Users should be able to:
-
-- View the optimal layout for the app depending on their device's screen size
-- See hover states for all interactive elements on the page
-- Navigate between Home, Movies, TV Series, and Bookmarked Shows pages
-- Add/Remove bookmarks from all movies and TV series
-- Search for relevant shows on all pages
-- **Bonus**: We provide authentication screen (sign-up/login) designs if you'd like to create an auth flow -->
+ - Before the game starts, all necessary resources (audio, images) are loaded. After the loading is complete, the main menu opens, where you can start the game, turn off the sound, view the leaderboard, and also expand the game beyond the browser. When you click the Play button, a window with game information and control keys opens, as well as a message that you need to press the Enter key to start the game.
+- The game consists of 5 levels with their own music and atmosphere. The kitten has only one life, so if the character dies, you will have to start over! If the player comes into contact with water or an enemy, the Game over scene opens, where pressing the Enter key redirects to the main menu.
+- After completing all 5 levels, a window appears congratulating you on successfully completing the game. And if you scored a record number of points, you will be offered to immortalize your name on the leaderboard!
 
 ### Screenshot
 
@@ -37,18 +32,16 @@ This is my own game, made as a final project in frontend courses. The main goal 
 
 ### Built with
 
-<!-- - Semantic HTML5 markup
-- Flexbox
-- CSS Grid
-- Pug
-- SCSS
-- Native JavaScript
-- Webpack
-- Swiper JS - slider
-- SweetAlert JS - for pop-ups
-- Simple Notify JS - for notifications
-- Firebase - for storing user data -->
+- HTML
+- CSS
+- Vite
+- JavaScript
+- Phaser JS
+- Vite
+- Firebase
+- Tiled
+- Texture Packer GUI
 
 ### What I learned
 
-<!-- Firebase, authentication, authorization, SPA, debounce function -->
+Creating games using the Phaser JS library, creating maps in the Tiled program, using and configuring the Vite build tool, creating sprites.
