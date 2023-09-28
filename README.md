@@ -37,7 +37,6 @@ This is my own game, made as a final project in frontend courses. The main goal 
 - Vite
 - JavaScript
 - Phaser JS
-- Vite
 - Firebase
 - Tiled
 - Texture Packer GUI
